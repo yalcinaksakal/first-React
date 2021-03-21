@@ -21,7 +21,7 @@ class App extends Component {
       ],
     });
   };
-  nameChangedHandler=(e)=>{
+  nameChangedHandler = e => {
     this.setState({
       persons: [
         { name: "Armağan", age: 13 },
@@ -29,13 +29,21 @@ class App extends Component {
         { name: "Meren", age: 13 },
       ],
     });
-  }
+  };
   render() {
+    //in line styling
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer",
+    };
     return (
       <div className="App">
         <h1>First react app</h1>
         <p>React, react, react</p>
-        <button onClick={this.switchNameHandler.bind(this, 5)}>
+        <button onClick={this.switchNameHandler.bind(this, 5)} style={style}>
           Switch Name
         </button>
         <Person
