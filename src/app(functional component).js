@@ -10,6 +10,8 @@ const app = props => {
   //useState returns array of two, first current state and second a function to setstate
 
   //multiple state slices with Hook
+
+  //stateful component, smart comp, container componnet
   const [personsState, setPersonsState] = useState({
     persons: [
       { name: "Ali", age: 13 },

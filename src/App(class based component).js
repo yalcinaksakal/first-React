@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-
+//stateful component, smart comp, container componnet
 class App extends Component {
   state = {
     persons: [
@@ -12,21 +12,32 @@ class App extends Component {
     otherState: "some other value",
   };
 
-  switchNameHandler = () => {
+  switchNameHandler = newName => {
     this.setState({
       persons: [
         { name: "Armağan", age: 13 },
-        { name: "Nesli", age: 41 },
+        { name: newName, age: 41 },
         { name: "Meren", age: 13 },
       ],
     });
   };
+  nameChangedHandler=(e)=>{
+    this.setState({
+      persons: [
+        { name: "Armağan", age: 13 },
+        { name: e.target.value, age: 41 },
+        { name: "Meren", age: 13 },
+      ],
+    });
+  }
   render() {
     return (
       <div className="App">
         <h1>First react app</h1>
         <p>React, react, react</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button onClick={this.switchNameHandler.bind(this, 5)}>
+          Switch Name
+        </button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
@@ -34,6 +45,10 @@ class App extends Component {
         <Person
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
+          //you can pass and also methods as props to components
+          //usage of bind method is preferred
+          change={this.nameChangedHandler}
+          click={() => this.switchNameHandler("Nesli")}
         >
           My hobbies: Racing and cooking.
         </Person>
