@@ -46,24 +46,26 @@ class App extends Component {
         <button onClick={this.switchNameHandler.bind(this, 5)} style={style}>
           Switch Name
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          //you can pass and also methods as props to components
-          //usage of bind method is preferred
-          change={this.nameChangedHandler}
-          click={() => this.switchNameHandler("Nesli")}
-        >
-          My hobbies: Racing and cooking.
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            //you can pass and also methods as props to components
+            //usage of bind method is preferred
+            change={this.nameChangedHandler}
+            click={() => this.switchNameHandler("Nesli")}
+          >
+            My hobbies: Racing and cooking.
+          </Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
       </div>
     );
     // return React.createElement('div',{className:"App"},React.createElement('h1',null,"First react project"))
