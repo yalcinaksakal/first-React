@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import Radium from "radium";
 //stateful component, smart comp, container componnet
 class App extends Component {
   state = {
@@ -44,38 +45,52 @@ class App extends Component {
   render() {
     //in line styling
     const style = {
-      backgroundColor: "whitesmoke",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: "none",
-      borderRadius: "10px",
+      borderRadius: "5px",
       padding: "8px",
       cursor: "pointer",
       outline: "none",
+      width: "150px",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black",
+      },
     };
     let persons;
-    this.state.showPersons
-      ? (persons = (
-          <div>
-            {this.state.persons.map((person, index) => {
-              return (
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  click={() => this.deletePersonHandler(index)}
-                  key={person.id}
-                  change={e => this.nameChangedHandler(e, person.id)}
-                />
-              );
-            })}
-          </div>
-        ))
-      : (persons = null);
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonHandler(index)}
+                key={person.id}
+                change={e => this.nameChangedHandler(e, person.id)}
+              />
+            );
+          })}
+        </div>
+      );
+      style.backgroundColor = "red";
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black",
+      };
+    }
+    let classes = [];
+    if (this.state.persons.length < 3) classes.push("red");
+    if (this.state.persons.length < 2) classes.push("bold");
     return (
       <div className="App">
         <h1>First react app</h1>
-        <p>React, react, react</p>
+        <p className={classes.join(" ")}>{this.state.persons.length} users</p>
         <button onClick={this.togglePersonsHandler} style={style}>
-          Show Users
+          {this.state.showPersons ? "Hide Users" : "Show Users"}
         </button>
         {persons}
       </div>
@@ -83,4 +98,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
