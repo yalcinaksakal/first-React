@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
-import Person from "./Person/Person";
 
+import Person from "./Person/Person";
+import classes from "./App.css";
 
 class App extends Component {
   state = {
@@ -44,6 +44,7 @@ class App extends Component {
 
   render() {
     let persons;
+    let btnClass = "";
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -60,16 +61,19 @@ class App extends Component {
           })}
         </div>
       );
+      btnClass = classes.Red;
     }
-    let classes = [];
-    if (this.state.persons.length < 3) classes.push("red");
-    if (this.state.persons.length < 2) classes.push("bold");
+    let assignedClasses = [];
+    if (this.state.persons.length < 3) assignedClasses.push(classes.red);
+    if (this.state.persons.length < 2) assignedClasses.push(classes.bold);
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>First react app</h1>
-        <p className={classes.join(" ")}>{this.state.persons.length} users</p>
+        <p className={assignedClasses.join(" ")}>
+          {this.state.persons.length} users
+        </p>
         <button
-          className="button"
+          className={btnClass}
           alt={this.state.showPersons}
           onClick={this.togglePersonsHandler}
         >
