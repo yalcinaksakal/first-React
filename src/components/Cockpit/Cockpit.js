@@ -12,7 +12,7 @@ const cockpit = props => {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>First react app</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>{props.personsLength} users</p>
       <button className={btnClass} onClick={props.clicked}>
         {props.showPersons ? "Hide Users" : "Show Users"}

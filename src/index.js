@@ -5,5 +5,5 @@ import App from "./containers/App";
 
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App appTitle="User Management" />, document.getElementById("root"));
 registerServiceWorker();
