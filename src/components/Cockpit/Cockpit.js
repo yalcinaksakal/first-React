@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Cockpit.css";
 
 const cockpit = props => {
+  //[props.persons]: executed if props.persons change
+  //[]: empty array works once at first execution
+  useEffect(() => {
+    console.log("[Cockpit.js] useEffect 1");
+    //const timer =
+    setTimeout(() => alert("Saved data to cloud"), 1000);
+
+    //componentWillunmount equivalent in functional componet, cleanup function
+    return () => {
+      //clearTimeout(timer);
+      console.log("[Cockpit.js]  cleanup work in UseEffect");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("[Cockpit.js] useEffect 2");
+    return () => console.log("[Cockpit.js]  cleanup work in 2nd UseEffect");
+  });
+
   const assignedClasses = [];
   let btnClass = "";
 
@@ -20,5 +39,5 @@ const cockpit = props => {
     </div>
   );
 };
-
-export default cockpit;
+//every functional component should be wrapped by React.memo for performace, for not rerendering if there is not any change in props. Similarly every class based component should include shouldComponentUpdate hook
+export default React.memo(cockpit);

@@ -8,9 +8,14 @@ class Persons extends Component {
   //     return state;
   //   }
 
+  //every functional component should be wrapped by React.memo for performace, for not rerendering if there is not any change in props. Similarly every class based component should include shouldComponentUpdate hook
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Persons.js] shouldComponentUpdate");
-    return true; // you shooul return true or false
+
+    return nextProps.persons !== this.props.person;
+    //if (nextProps.persons !== this.props.persons) return true;
+    //else return false;
+    // return true; // you shooul return true or false
   }
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("[Persons.js]  getSnapshotBeforeUpdate");
@@ -20,6 +25,10 @@ class Persons extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("[Persons.js] componentDidUpdate");
     console.log(snapshot);
+  }
+  //for functional components useEffetc return function will handle cleanup. in class based components us componentWillUnmount for cleanup
+  componentWillUnmount() {
+    console.log("[Persons.js] componentWillUnmount");
   }
   render() {
     console.log("[Persons.js] rendering");
