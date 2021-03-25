@@ -37,6 +37,8 @@ class Persons extends PureComponent {
   }
   render() {
     console.log("[Persons.js] rendering");
+
+    //returning array of JSX, since each have key, it is ok
     return this.props.persons.map((person, index) => {
       return (
         <ErrorBoundary key={person.id}>
