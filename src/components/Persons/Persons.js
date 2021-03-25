@@ -48,7 +48,7 @@ class Persons extends PureComponent {
             click={() => this.props.clicked(index)}
             key={person.id}
             change={e => this.props.changed(e, person.id)}
-            isAuth={this.props.isAuthenticated}
+          
           />
         </ErrorBoundary>
       );

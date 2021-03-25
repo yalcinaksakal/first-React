@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.css";
 
+import AuthContext from "../../context/auth-context";
+
 const cockpit = props => {
   const toggleBtnRef = useRef(null);
   //jsx hasnt created button yet so below click wont work.
@@ -11,7 +13,7 @@ const cockpit = props => {
     console.log("[Cockpit.js] useEffect 1");
     //const timer =
     // setTimeout(() => alert("Saved data to cloud"), 1000);
-    
+
     toggleBtnRef.current.click();
     //componentWillunmount equivalent in functional componet, cleanup function
     return () => {
@@ -40,7 +42,9 @@ const cockpit = props => {
       <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
         {props.showPersons ? "Hide Users" : "Show Users"}
       </button>
-      <button onClick={props.login}>Log in</button>
+      <AuthContext.Consumer>
+        {context => <button onClick={context.login}>Log in</button>}
+      </AuthContext.Consumer>
     </div>
   );
 };
