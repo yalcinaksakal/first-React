@@ -11,6 +11,14 @@ class Person extends Component {
   //       width: "450px",
   //     },
   //   };
+  constructor(props) {
+    super(props);
+    this.inputElRef = React.createRef();
+  }
+  componentDidMount() {
+    // this.inputEl.focus();
+    this.inputElRef.current.focus();
+  }
 
   render() {
     console.log("[Person.js] rendering");
@@ -23,6 +31,8 @@ class Person extends Component {
           </p>
 
           <input
+            // ref={inputEl => (this.inputEl = inputEl)}
+            ref={this.inputElRef}
             type="text"
             onChange={this.props.change}
             value={this.props.name}
