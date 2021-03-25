@@ -1,22 +1,27 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ErrorBoundary from "../../ErrorBoundary/ErrorBoundary";
 import Person from "./Person/Person";
 
-class Persons extends Component {
+class Persons extends PureComponent {
   //   static getDerivedStateFromProps(props, state) {
   //     console.log("[Persons.js] getDerivedStateFromProps");
   //     return state;
   //   }
 
-  //every functional component should be wrapped by React.memo for performace, for not rerendering if there is not any change in props. Similarly every class based component should include shouldComponentUpdate hook
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[Persons.js] shouldComponentUpdate");
-
-    return nextProps.persons !== this.props.person;
-    //if (nextProps.persons !== this.props.persons) return true;
-    //else return false;
-    // return true; // you shooul return true or false
-  }
+  //every functional component should be wrapped by React.memo for performace, for not rerendering if there is not any change in props. Similarly every class based component should include shouldComponentUpdate hook.
+  //of course if component's parent's state always effect child component, then do NOT use React.memo or shouldCompUpdate
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[Persons.js] shouldComponentUpdate");
+  //   //complete props change control=>then use PureComponent. shouldComponentUpdate with all props cehcked is already constructed there
+  //   return (
+  //     nextProps.persons !== this.props.person ||
+  //     nextProps.change !== this.props.change ||
+  //     nextProps.click !== this.props.click
+  //   );
+  //   //if (nextProps.persons !== this.props.persons) return true;
+  //   //else return false;
+  //   // return true; // you shooul return true or false
+  // }
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("[Persons.js]  getSnapshotBeforeUpdate");
     return { message: "snapshot" };

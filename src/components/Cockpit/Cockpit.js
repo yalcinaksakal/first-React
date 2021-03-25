@@ -39,5 +39,6 @@ const cockpit = props => {
     </div>
   );
 };
-//every functional component should be wrapped by React.memo for performace, for not rerendering if there is not any change in props. Similarly every class based component should include shouldComponentUpdate hook
+//every functional component should be wrapped by React.memo for performace, for not rerendering if there is not any change in props. Similarly every class based component should include shouldComponentUpdate hook.
+//of course if component's parent's state always effect child component, then do NOT use React.memo or shouldCompUpdate
 export default React.memo(cockpit);
