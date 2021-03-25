@@ -26,6 +26,7 @@ class App extends Component {
     authenticated: false,
   };
 
+
   static getDerivedStateFromProps(props, state) {
     console.log("[App.js] getDerivedStateFromProps ", props);
     return state;
@@ -36,6 +37,7 @@ class App extends Component {
   }
   componentDidMount() {
     console.log("[App.js] componentDidMount");
+   
   }
 
   componentDidUpdate() {

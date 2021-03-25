@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import classes from "./Cockpit.css";
 
 import AuthContext from "../../context/auth-context";
 
 const cockpit = props => {
   const toggleBtnRef = useRef(null);
+  const authContext = useContext(AuthContext);
+  console.log(authContext);
   //jsx hasnt created button yet so below click wont work.
   //toggleBtnRef.current.click();
   //[props.persons]: executed if props.persons change
@@ -42,9 +44,12 @@ const cockpit = props => {
       <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
         {props.showPersons ? "Hide Users" : "Show Users"}
       </button>
-      <AuthContext.Consumer>
-        {context => <button onClick={context.login}>Log in</button>}
-      </AuthContext.Consumer>
+      {/* <AuthContext.Consumer> */}
+      {/* {
+        context =>  */}
+      <button onClick={authContext.login}>Log in</button>
+      {/* } */}
+      {/* </AuthContext.Consumer> */}
     </div>
   );
 };
