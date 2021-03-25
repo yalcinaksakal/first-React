@@ -21,6 +21,7 @@ class App extends Component {
     otherState: "some other value",
     showPersons: false,
     showCockpit: true,
+    changeCounter: 0,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -50,9 +51,12 @@ class App extends Component {
     person.name = e.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-
-    this.setState({
-      persons: persons,
+    //this.state may not be synchronous, so changeCounter may not work correctly or as expected. So use prevState when you are depending on prevstate
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
     });
   };
 
@@ -109,4 +113,4 @@ class App extends Component {
     );
   }
 }
-export default withClass(App,classes.App);
+export default withClass(App, classes.App);

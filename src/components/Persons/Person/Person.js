@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import classes from "./Person.css";
 import Aux from "../../hoc/Auxiliary";
+import withClass from "../../hoc/withClass";
+import PropTypes from "prop-types";
 
 class Person extends Component {
   //const person = props => {
@@ -14,7 +16,7 @@ class Person extends Component {
     console.log("[Person.js] rendering");
     return (
       <Fragment>
-        <div className={classes.Person}>
+        <div>
           <p onClick={this.props.click}>
             I am {this.props.name ? this.props.name : "none"} and{" "}
             {this.props.age} years old. {this.props.children}
@@ -56,5 +58,12 @@ class Person extends Component {
     );
   }
 }
-export default Person;
+
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  change: PropTypes.func,
+};
+export default withClass(Person, classes.Person);
 // export default Radium(person);

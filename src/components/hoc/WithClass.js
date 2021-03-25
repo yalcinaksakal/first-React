@@ -6,7 +6,8 @@ import React from "react";
 const withClass = (WrappedComponent, className) => {
   return props => (
     <div className={className}>
-      <WrappedComponent />
+      {/* spread props, pass all props of wrapped componnets to hoc component  */}
+      <WrappedComponent {...props} />
     </div>
   );
 };
