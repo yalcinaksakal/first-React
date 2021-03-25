@@ -22,9 +22,11 @@ class Person extends Component {
 
   render() {
     console.log("[Person.js] rendering");
+    
     return (
-      <Fragment>
+      <Aux>
         <div>
+          {this.props.isAuth ? <p>Authenticated</p> : <p>Please log in</p>}
           <p onClick={this.props.click}>
             I am {this.props.name ? this.props.name : "none"} and{" "}
             {this.props.age} years old. {this.props.children}
@@ -40,7 +42,7 @@ class Person extends Component {
         </div>
 
         <div>hello</div>
-      </Fragment>
+      </Aux>
 
       //   // <div className="Person" style={style}>
       //   //instead of Aux component we can use React.Fragment built in component for that purpose

@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.css";
 
 const cockpit = props => {
+  const toggleBtnRef = useRef(null);
+  //jsx hasnt created button yet so below click wont work.
+  //toggleBtnRef.current.click();
   //[props.persons]: executed if props.persons change
   //[]: empty array works once at first execution
   useEffect(() => {
     console.log("[Cockpit.js] useEffect 1");
     //const timer =
-    setTimeout(() => alert("Saved data to cloud"), 1000);
-
+    // setTimeout(() => alert("Saved data to cloud"), 1000);
+    
+    toggleBtnRef.current.click();
     //componentWillunmount equivalent in functional componet, cleanup function
     return () => {
       //clearTimeout(timer);
@@ -33,9 +37,10 @@ const cockpit = props => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>{props.personsLength} users</p>
-      <button className={btnClass} onClick={props.clicked}>
+      <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
         {props.showPersons ? "Hide Users" : "Show Users"}
       </button>
+      <button onClick={props.login}>Log in</button>
     </div>
   );
 };
